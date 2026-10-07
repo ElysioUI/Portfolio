@@ -182,3 +182,9 @@ main {
 @media (max-width: 760px) {
   #reseau { opacity: .72; }
 }
+
+
+/* Faisceau énergétique et structure de l'anneau */
+#reseau {
+  mix-blend-mode: screen;
+}
