@@ -45,6 +45,19 @@ body::after {
 @keyframes gridMove { to { background-position: 45px 45px; } }
 
 header, main, footer { max-width: 48rem; margin: 0 auto; padding: 0 1rem; }
+#reseau {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+header, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
 header {
   padding-top: 1.6rem; padding-bottom: .8rem;
   display: flex; flex-wrap: wrap; justify-content: space-between;
