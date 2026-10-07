@@ -28,7 +28,7 @@ Seul, en salle de formation. Un compte GitHub gratuit, le modèle de portfolio d
 - Le dépôt GitHub contenant les fichiers du portfolio.
 - L'historique des modifications du dépôt.
 
-![Capture d'écran de mon portfolio]({{ '/images/restauration-ok.png.png' | relative_url }})
+<img src="{{ '/images/restauration-ok.png.png' | relative_url }}" alt="Capture d'écran de mon portfolio">
 
 ## Ce que j'en retiens
 
