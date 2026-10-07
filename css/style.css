@@ -152,3 +152,33 @@ footer { margin-top: 3rem; padding-top: 1.2rem; padding-bottom: 2rem; font-size:
   html { scroll-behavior: auto; }
   body::after, .carte { animation: none; transition: none; }
 }
+
+/* Ambiance espace / mégastructure inspirée des références fournies */
+#reseau {
+  opacity: .95;
+}
+
+body::before {
+  background:
+    radial-gradient(ellipse at 78% 45%, rgba(42, 178, 229, .10), transparent 24%),
+    radial-gradient(ellipse at 92% 82%, rgba(23, 86, 145, .12), transparent 30%),
+    radial-gradient(circle at 10% 12%, rgba(14, 70, 110, .12), transparent 28%),
+    linear-gradient(135deg, #01050b 0%, #04111d 48%, #01050a 100%);
+}
+
+body::after {
+  opacity: .13;
+  background-image:
+    linear-gradient(rgba(100, 220, 255, .08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 220, 255, .08) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+main {
+  text-shadow: 0 1px 1px rgba(0,0,0,.35);
+}
+
+@media (max-width: 760px) {
+  #reseau { opacity: .72; }
+}
