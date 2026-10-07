@@ -7,7 +7,7 @@
   <meta name="description" content="{{ page.resume | default: site.description }}">
   <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
 </head>
-<body>
+<body><canvas id="reseau" aria-hidden="true"></canvas>
   <header>
     <p class="site"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></p>
     <nav aria-label="Menu principal">
@@ -26,5 +26,46 @@
   <footer>
     <p>{% if site.email != "" %}<a href="mailto:{{ site.email }}">{{ site.email }}</a> · {% endif %}{% if site.linkedin != "" %}<a href="{{ site.linkedin }}">LinkedIn</a> · {% endif %}contenu sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC BY 4.0</a> · <a href="{{ '/mentions-legales/' | relative_url }}">mentions légales</a></p>
   </footer>
-</body>
+<script>
+(() => {
+  const canvas = document.getElementById('reseau');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let points = [], w, h, raf;
+
+  function resize() {
+    w = canvas.width = innerWidth * devicePixelRatio;
+    h = canvas.height = innerHeight * devicePixelRatio;
+    canvas.style.width = innerWidth + 'px';
+    canvas.style.height = innerHeight + 'px';
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    const n = Math.min(55, Math.max(25, Math.floor(innerWidth / 24)));
+    points = Array.from({length:n}, () => ({
+      x: Math.random()*innerWidth, y: Math.random()*innerHeight,
+      vx:(Math.random()-.5)*.22, vy:(Math.random()-.5)*.22
+    }));
+  }
+  function draw() {
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    for (const p of points) {
+      if (!reduce) { p.x += p.vx; p.y += p.vy; }
+      if (p.x < 0 || p.x > innerWidth) p.vx *= -1;
+      if (p.y < 0 || p.y > innerHeight) p.vy *= -1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,1.5,0,Math.PI*2);
+      ctx.fillStyle='rgba(56,189,248,.55)'; ctx.fill();
+    }
+    for (let i=0;i<points.length;i++) for(let j=i+1;j<points.length;j++) {
+      const a=points[i],b=points[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+      if(d<125) {
+        ctx.strokeStyle='rgba(56,189,248,'+(0.12*(1-d/125))+')';
+        ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      }
+    }
+    if (!reduce) raf=requestAnimationFrame(draw);
+  }
+  addEventListener('resize', resize);
+  resize(); draw();
+})();
+</script></body>
 </html>
