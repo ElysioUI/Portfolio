@@ -28,6 +28,8 @@ Seul, en salle de formation. Un compte GitHub gratuit, le modèle de portfolio d
 - Le dépôt GitHub contenant les fichiers du portfolio.
 - L'historique des modifications du dépôt.
 
+![Capture d'écran de mon portfolio]({{ '/images/restauration-ok.png.png' | relative_url }})
+
 ## Ce que j'en retiens
 
 La principale difficulté rencontrée a été de comprendre le fonctionnement de GitHub, que je n'avais jamais utilisé auparavant. Cela m'a ralenti au début, notamment pour comprendre l'organisation du dépôt et la manière de modifier et publier les fichiers. En suivant les étapes du modèle et en utilisant GitHub progressivement, j'ai pu mieux comprendre son fonctionnement et poursuivre la réalisation de mon portfolio.
