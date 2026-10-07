@@ -2,7 +2,7 @@
 title: "Intitulé du projet"
 date: 2026-10-07
 cadre: "Atelier de professionnalisation"
-resume: "Une phrase : ce que vous avez fait, et pour qui."
+resume: "Travailler"
 competences: [c2]
 ---
 
