@@ -127,6 +127,61 @@
       }
     }
 
+    // Energy projector mounted on the ring, firing a blue beam toward space.
+    const beamA = -1.02;
+    const sx = Math.cos(beamA) * rx;
+    const sy = Math.sin(beamA) * ry;
+    const pulse = reduce ? .72 : .62 + Math.sin(time * .004) * .10;
+
+    // Wide atmospheric glow.
+    const beamGrad = ctx.createLinearGradient(sx, sy, sx - 230, sy + 520);
+    beamGrad.addColorStop(0, 'rgba(74, 218, 255, ' + (.30 * pulse) + ')');
+    beamGrad.addColorStop(.35, 'rgba(44, 175, 255, ' + (.13 * pulse) + ')');
+    beamGrad.addColorStop(1, 'rgba(20, 105, 190, 0)');
+    ctx.fillStyle = beamGrad;
+    ctx.beginPath();
+    ctx.moveTo(sx - 8, sy + 2);
+    ctx.lineTo(sx - 250, sy + 545);
+    ctx.lineTo(sx + 10, sy + 405);
+    ctx.closePath();
+    ctx.fill();
+
+    // Focused core of the beam.
+    ctx.shadowBlur = 18;
+    ctx.shadowColor = 'rgba(71, 211, 255, .85)';
+    ctx.strokeStyle = 'rgba(173, 244, 255, ' + (.76 * pulse) + ')';
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(sx - 185, sy + 430);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Mechanical emitter attached to the ring.
+    ctx.save();
+    ctx.translate(sx, sy);
+    ctx.rotate(beamA + Math.PI / 2);
+    ctx.fillStyle = 'rgba(9, 31, 48, .96)';
+    ctx.strokeStyle = 'rgba(116, 224, 255, .75)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(-10, -7);
+    ctx.lineTo(12, -7);
+    ctx.lineTo(17, 0);
+    ctx.lineTo(12, 7);
+    ctx.lineTo(-10, 7);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(88, 225, 255, .95)';
+    ctx.shadowBlur = 14;
+    ctx.shadowColor = 'rgba(70, 210, 255, .9)';
+    ctx.beginPath();
+    ctx.arc(0, 0, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.restore();
+
     ctx.restore();
   }
 
